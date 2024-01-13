@@ -57,6 +57,7 @@ public class LoginPageTest extends ExtentReport  {
 		return data;
 	}
 	
+	@Test
 	public void gmailLoginTest(String emailAddress, String password){
 		test = extent.startTest("gmailLoginTest", "Gmail login test has been started...");
 		test.log(LogStatus.INFO,"Navigate to Gmail Application URL");/*Log Revenue Application URL in report*/
