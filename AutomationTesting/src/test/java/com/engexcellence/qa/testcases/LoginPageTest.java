@@ -58,6 +58,7 @@ public class LoginPageTest extends TestBase {
 		Assert.assertTrue(loginpage.isElementDisplayed());
 		loginpage.enterPassword(password);
 		loginpage.clickNextButton();
+		System.out.println("this is gmail login test case");
 	}
 	
 	
