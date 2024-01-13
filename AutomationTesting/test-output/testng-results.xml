@@ -2,16 +2,16 @@
 <testng-results ignored="1" total="3" passed="0" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-01-12T17:02:35Z" name="Default suite" finished-at="2024-01-12T17:04:20Z" duration-ms="104101">
+  <suite started-at="2024-01-13T06:41:17Z" name="Default suite" finished-at="2024-01-13T06:42:50Z" duration-ms="92220">
     <groups>
     </groups>
-    <test started-at="2024-01-12T17:02:35Z" name="Default test" finished-at="2024-01-12T17:04:20Z" duration-ms="104101">
+    <test started-at="2024-01-13T06:41:17Z" name="Default test" finished-at="2024-01-13T06:42:50Z" duration-ms="92220">
       <class name="com.engexcellence.qa.testcases.LoginPageTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-12T17:02:36Z" name="setup" finished-at="2024-01-12T17:02:49Z" duration-ms="13087" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-13T06:41:18Z" name="setup" finished-at="2024-01-13T06:41:27Z" duration-ms="8959" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="gmailLoginTest(java.lang.String, java.lang.String)[pri:2, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-12T17:02:49Z" name="gmailLoginTest" data-provider="getUserCredentialsTestData" finished-at="2024-01-12T17:03:30Z" duration-ms="40804" status="FAIL">
+        <test-method signature="gmailLoginTest(java.lang.String, java.lang.String)[pri:2, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-13T06:41:27Z" name="gmailLoginTest" data-provider="getUserCredentialsTestData" finished-at="2024-01-13T06:42:04Z" duration-ms="37341" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -65,8 +65,8 @@ For documentation on this error, please visit: https://www.seleniumhq.org/except
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'IN-PG02P5P2', ip: '192.168.99.153', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.19'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.217, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65252}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a49b67db27460d36ac84c685a3ff293c
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.217, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58493}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 344c83002c185136b34346548541cf3c
 *** Element info: {Using=name, value=hiddenPassword}
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
@@ -99,15 +99,15 @@ at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- gmailLoginTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-12T17:03:30Z" name="tearDown" finished-at="2024-01-12T17:03:31Z" duration-ms="599" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-13T06:42:04Z" name="tearDown" finished-at="2024-01-13T06:42:05Z" duration-ms="431" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-12T17:03:31Z" name="setup" finished-at="2024-01-12T17:03:39Z" duration-ms="8393" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-13T06:42:05Z" name="setup" finished-at="2024-01-13T06:42:11Z" duration-ms="6104" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="gmailLoginTest(java.lang.String, java.lang.String)[pri:2, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-12T17:03:39Z" name="gmailLoginTest" data-provider="getUserCredentialsTestData" finished-at="2024-01-12T17:04:19Z" duration-ms="39756" status="FAIL">
+        <test-method signature="gmailLoginTest(java.lang.String, java.lang.String)[pri:2, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-13T06:42:11Z" name="gmailLoginTest" data-provider="getUserCredentialsTestData" finished-at="2024-01-13T06:42:49Z" duration-ms="37995" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -161,8 +161,8 @@ For documentation on this error, please visit: https://www.seleniumhq.org/except
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'IN-PG02P5P2', ip: '192.168.99.153', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.19'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.217, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65358}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 7e46cf4032dd538cd692930fc3386b6e
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 120.0.6099.217, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\WINDOWS\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58568}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: db0a0d785e63eff4c3ca7761cc72181c
 *** Element info: {Using=name, value=hiddenPassword}
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
@@ -194,7 +194,7 @@ at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- gmailLoginTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-12T17:04:19Z" name="tearDown" finished-at="2024-01-12T17:04:20Z" duration-ms="660" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.engexcellence.qa.testcases.LoginPageTest@4ebff610]" started-at="2024-01-13T06:42:49Z" name="tearDown" finished-at="2024-01-13T06:42:50Z" duration-ms="681" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
