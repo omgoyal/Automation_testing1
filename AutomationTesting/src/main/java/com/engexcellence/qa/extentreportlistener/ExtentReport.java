@@ -30,7 +30,7 @@ public class ExtentReport extends TestBase implements IReporter {
 	
 	
 	public ExtentReports extent;
-	
+	public ExtentTest test;
 	public void start(ExtentReports extent) {
 		 System.out.println("Test Case execution started....");
 			
