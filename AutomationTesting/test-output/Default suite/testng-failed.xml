@@ -6,8 +6,8 @@
       <class name="com.engexcellence.qa.testcases.LoginPageTest">
         <methods>
           <include name="tearDown"/>
+          <include name="signInPageTitleTest"/>
           <include name="setup"/>
-          <include name="gmailLoginTest" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- com.engexcellence.qa.testcases.LoginPageTest -->
     </classes>

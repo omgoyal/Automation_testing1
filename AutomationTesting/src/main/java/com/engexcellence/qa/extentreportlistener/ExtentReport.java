@@ -2,6 +2,7 @@ package com.engexcellence.qa.extentreportlistener;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.testng.IResultMap;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
 
@@ -26,16 +28,17 @@ import com.relevantcodes.extentreports.LogStatus;
 
 import com.relevantcodes.extentreports.model.Test;
 
-public class ExtentReport extends TestBase implements IReporter {
+public class ExtentReport extends TestBase implements ITestListener {
 	
 	
-	public ExtentReports extent;
-	public ExtentTest test;
+	 protected static ExtentReports reports;
+	 protected static ExtentTest test;
+	 public String timestamp = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
+	/**
 	public void start(ExtentReports extent) {
 		 System.out.println("Test Case execution started....");
 			
 		}
-	
 	
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory){
 		
@@ -70,8 +73,9 @@ public class ExtentReport extends TestBase implements IReporter {
 		
 		extent.flush();
 		extent.close();
-	}
+	}**/
 
+	/**
 	private void buildTestNodes(IResultMap tests, LogStatus status) throws IOException {
 		
 		ExtentTest test;
@@ -105,8 +109,7 @@ public class ExtentReport extends TestBase implements IReporter {
 		
 		}
 		
-	}
-	
+	}**/
 	
 	private Date getTime(long millis){
 		Calendar calendar = Calendar.getInstance();
@@ -133,6 +136,95 @@ public class ExtentReport extends TestBase implements IReporter {
 	
 	public void stop() {
 		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+	@Override
+	public void onTestStart(ITestResult result) {
+		System.out.println("on test start...");
+		
+	}
+
+
+
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("on test success");
+		test.log(LogStatus.PASS, result.getMethod().getMethodName() + "test is passed");	
+		
+	}
+
+
+
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		System.out.println("on test failure");
+		  //test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test is failed");
+		  try{
+			  //ScreenShot.takeScreenshotCapture(driver, "D:\\Nagarro_Automation_Project\\COCQE\\COCQE-master-83292b8b36d18a7554f04bad407193a5fc70874c\\web_automation_workspace\\web-solution-acceptance-test\\screenshot\\"+ result.getMethod().getMethodName() + ".png");
+//String file = test.addScreenCapture("D:\\Nagarro_Automation_Project\\COCQE\\COCQE-master-83292b8b36d18a7554f04bad407193a5fc70874c\\web_automation_workspace\\web-solution-acceptance-test\\screenshot\\" + result.getMethod().getMethodName() + ".png");
+//ScreenShot.takeScreenshotCapture(driver, System.getProperty("user.dir")+"\\screenshot\\"+ result.getMethod().getMethodName() + ".png");
+TestUtil.captureScreenshot(driver, System.getProperty("user.dir")+"\\screenshot\\"+result.getMethod().getMethodName()+timestamp+".png");
+String file = test.addScreenCapture(System.getProperty("user.dir")+"\\screenshot\\"+result.getMethod().getMethodName()+timestamp+".png");
+
+//test1.addScreenCapture(System.getProperty("user.dir")+"\\screenshot\\" + result.getMethod().getMethodName() + ".png");
+
+test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test is failed", file);
+test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test failure description", result.getThrowable().fillInStackTrace());	
+} catch(Exception e){
+e.printStackTrace();
+}
+	}
+		
+	
+
+
+
+
+	@Override
+	public void onTestSkipped(ITestResult result) {
+		 System.out.println("on test skipped");
+		  test.log(LogStatus.SKIP, result.getMethod().getMethodName() + "test is skipped");
+		 
+		
+	}
+
+
+
+
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		System.out.println("on test sucess within percentage");
+		
+	}
+
+
+
+
+	@Override
+	public void onStart(ITestContext context) {
+		System.out.println("on start");
+		//reports = new ExtentReports(System.getProperty("D:\\Nagarro_Automation_Project\\COCQE\\COCQE-master-83292b8b36d18a7554f04bad407193a5fc70874c\\web_automation_workspace\\web-solution-acceptance-test\null")+"\\STMExtentReport.html", true);
+		//reports.addSystemInfo("Host Name", "Selenium Automation").addSystemInfo("Enviornment", "Automation Testing").addSystemInfo("Username", "osgoyal");
+		
+		reports = new ExtentReports(System.getProperty("user.dir")+"\\Report\\"+"\\STMExtentReport"+TestUtil.simpleDateFormat()+".html", true);
+		reports.addSystemInfo("Host Name", "Selenium Automation").addSystemInfo("Enviornment", "Automation Testing").addSystemInfo("Username", "osgoyal");
+		reports.loadConfig(new File(System.getProperty("user.dir")+"\\dev"+"\\extent-config.xml"));
+	}
+
+
+
+
+	@Override
+	public void onFinish(ITestContext context) {
+		System.out.println("on finish");
+		  reports.endTest(test);
+		  reports.flush();	
 		
 	}
 

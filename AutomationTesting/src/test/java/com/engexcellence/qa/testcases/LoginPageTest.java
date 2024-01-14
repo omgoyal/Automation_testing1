@@ -3,10 +3,10 @@ package com.engexcellence.qa.testcases;
 
 
 import org.testng.annotations.AfterMethod;
-import org.testng.AssertJUnit;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -44,32 +44,35 @@ public class LoginPageTest extends ExtentReport  {
 		 testutil = new TestUtil();
 		 
 	}
-	
+	@Test(priority=1)
 	public void signInPageTitleTest(){
+		test =reports.startTest("signInPageTitleTest");/*Launch the report testRevenueApplicationLogin*/
+		test.log(LogStatus.INFO,"Navigate to Gmail Application Sign In pgw title test" );/*Log Revenue Application URL in report*/
 		String actualSignInPageTitle = signinpage.getSignInPageTitle();
 		
-		AssertJUnit.assertEquals(actualSignInPageTitle, "Gmail: Private and secure email at no cost | Google Workspace");
+		Assert.assertEquals(actualSignInPageTitle, "Gmail: Private and secure email at no cost | Google Workspace");
 	}
 	
-	@DataProvider
+	@DataProvider (name = "gmailLoginTest")
 	public Object[][] getUserCredentialsTestData(){
 		Object data[][] = TestUtil.getTestData(sheetName);
 		return data;
 	}
 	
-	@Test
+
+	@Test(priority=2,dataProvider = "gmailLoginTest")
 	public void gmailLoginTest(String emailAddress, String password){
-		test = extent.startTest("gmailLoginTest", "Gmail login test has been started...");
-		test.log(LogStatus.INFO,"Navigate to Gmail Application URL");/*Log Revenue Application URL in report*/
+		test =reports.startTest("gmailLoginTest");/*Launch the report testRevenueApplicationLogin*/
+		test.log(LogStatus.INFO,"Navigate to Gmail Application login" );/*Log Revenue Application URL in report*/
 		signinpage.clickSignInButton();
 		loginpage.enterEmailAddress(emailAddress);
 		loginpage.clickNextButton();
 		String attributevalue =testutil.getAttributeElement(loginpage.txtPasswordbox,"name");
 		testutil.explicitWaitElementPresence(attributevalue);
-		AssertJUnit.assertTrue(loginpage.isElementDisplayed());
+		Assert.assertTrue(loginpage.isElementDisplayed());
 		loginpage.enterPassword(password);
 		loginpage.clickNextButton();
-		System.out.println("this is gmail login test case");
+		System.out.println("this is gmail login test case1");
 	}
 	
 	

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -164,19 +165,26 @@ public class TestUtil extends TestBase {
 		return dateFormat.format(cal.getTime());
 	}
 	
+	
+	
 	/**
 	 * This method is used to capture screen-shot in case of any exception has been occur.
+	 * @return 
 	 * @throws IOException
 	 */
-	public static String captureScreenshot(WebDriver driver, String screenshotname) throws IOException{
+	public static void captureScreenshot(WebDriver driver, String filepath) throws IOException{
+		try {
 		TakesScreenshot srcShot = ((TakesScreenshot) driver);
 		
 		File srcFile = srcShot.getScreenshotAs(OutputType.FILE);
 		
-		String destination = System.getProperty("user.dir")+"/screenshots/"+TestUtil.simpleDateFormat()+".png";
-		File DestFile=new File(destination);
+		//String destination = System.getProperty("user.dir")+"/screenshots/"+TestUtil.simpleDateFormat()+".png";
+		File DestFile=new File(filepath);
 		FileUtils.copyFile(srcFile,DestFile);
-		return destination;
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
 			//FileUtils.copyFile(srcFile, new File(currentDir+"/screenshots/"+TestUtil.simpleDateFormat()+".png"));
 		
 	}
