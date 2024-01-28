@@ -7,6 +7,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import java.util.Properties;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +17,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.engexcellence.qa.base.TestBase;
+import com.engexcellence.qa.config.PropertiesFileReader;
 import com.engexcellence.qa.extentreportlistener.ExtentReport;
 import com.engexcellence.qa.util.TestUtil;
 import com.engexcelllence.qa.pages.LoginPage;
@@ -28,6 +31,7 @@ public class LoginPageTest extends ExtentReport  {
 	SignInPage signinpage;
 	LoginPage loginpage;
 	TestUtil testutil;
+	public PropertiesFileReader propertyfile;
 	
 	String sheetName="User_Credentials";
 	
@@ -42,12 +46,18 @@ public class LoginPageTest extends ExtentReport  {
 		 signinpage = new SignInPage();
 		 loginpage = new LoginPage();
 		 testutil = new TestUtil();
-		 
+		 try {
+		 propertyfile = new PropertiesFileReader(System.getProperty("user.dir")+"\\src\\main\\java\\com\\engexcellence\\qa\\config\\config.properties");
+		 }catch(Exception e) {
+			 e.printStackTrace();
+		 }
 	}
 	@Test(priority=1)
 	public void signInPageTitleTest(){
 		test =reports.startTest("signInPageTitleTest");/*Launch the report testRevenueApplicationLogin*/
-		test.log(LogStatus.INFO,"Navigate to Gmail Application Sign In pgw title test" );/*Log Revenue Application URL in report*/
+		testjenkins =reportsJenkins.startTest("signInPageTitleTest");/*Launch the report testRevenueApplicationLogin*/
+		test.log(LogStatus.INFO,"Navigate to Gmail Application Sign In page title test" );/*Log Revenue Application URL in report*/
+		testjenkins.log(LogStatus.INFO,"Navigate to Gmail Application Sign In page title test" );/*Log Revenue Application URL in report*/
 		String actualSignInPageTitle = signinpage.getSignInPageTitle();
 		
 		Assert.assertEquals(actualSignInPageTitle, "Gmail: Private and secure email at no cost | Google Workspace");
@@ -60,12 +70,34 @@ public class LoginPageTest extends ExtentReport  {
 	}
 	
 
-	@Test(priority=2,dataProvider = "gmailLoginTest")
-	public void gmailLoginTest(String emailAddress, String password){
+	@Test(priority=2)
+	public void gmailLoginTest(){
 		test =reports.startTest("gmailLoginTest");/*Launch the report testRevenueApplicationLogin*/
-		test.log(LogStatus.INFO,"Navigate to Gmail Application login" );/*Log Revenue Application URL in report*/
+		testjenkins =reportsJenkins.startTest("gmailLoginTest");/*Launch the report testRevenueApplicationLogin*/
+		driver.get(propertyfile.getPropertyfileValue("url"));
+		test.log(LogStatus.INFO,"Navigate to Gmail Application login via propertyfile" );/*Log Revenue Application URL in report*/
+		testjenkins.log(LogStatus.INFO,"Navigate to Gmail Application login via propertyfile" );/*Log Revenue Application URL in report*/
 		signinpage.clickSignInButton();
-		loginpage.enterEmailAddress(emailAddress);
+		loginpage.enterEmailAddress(propertyfile.getPropertyfileValue("emailaddress"));
+		loginpage.clickNextButton();
+		String attributevalue =testutil.getAttributeElement(loginpage.txtPasswordbox,"name");
+		testutil.explicitWaitElementPresence(attributevalue);
+		Assert.assertTrue(loginpage.isElementDisplayed());
+		loginpage.enterPassword(propertyfile.getPropertyfileValue("password"));
+		loginpage.clickNextButton();
+		System.out.println("this is gmail login test case1");
+	}
+	
+	
+	@Test(priority=3,dataProvider="gmailLoginTest")
+	public void gmailLoginTestviaExcelData(String emaladdress,String password){
+		test =reports.startTest("gmailLoginTest");/*Launch the report testRevenueApplicationLogin*/
+		testjenkins =reportsJenkins.startTest("gmailLoginTest");/*Launch the report testRevenueApplicationLogin*/
+		driver.get(propertyfile.getPropertyfileValue("url"));
+		test.log(LogStatus.INFO,"Navigate to Gmail Application login via excel data" );/*Log Revenue Application URL in report*/
+		testjenkins.log(LogStatus.INFO,"Navigate to Gmail Application login via excel data" );/*Log Revenue Application URL in report*/
+		signinpage.clickSignInButton();
+		loginpage.enterEmailAddress(emaladdress);
 		loginpage.clickNextButton();
 		String attributevalue =testutil.getAttributeElement(loginpage.txtPasswordbox,"name");
 		testutil.explicitWaitElementPresence(attributevalue);
@@ -74,6 +106,7 @@ public class LoginPageTest extends ExtentReport  {
 		loginpage.clickNextButton();
 		System.out.println("this is gmail login test case1");
 	}
+	
 	
 	
 	

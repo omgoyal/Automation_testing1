@@ -61,7 +61,6 @@ public class LoginPage extends TestBase {
 	
 	//Webelement-OR
 	@FindBy(xpath = "//input[@type='email']")
-	@CacheLookup  /*store the element in the cache(create a small memory store the element in that every time when we call that elment it will fetch from that instead of html dom so that speed increase)*/
 	WebElement txtEmailbox;
 	
 	@FindBy(xpath ="//span[text()='Next']")

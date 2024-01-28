@@ -32,7 +32,9 @@ public class ExtentReport extends TestBase implements ITestListener {
 	
 	
 	 protected static ExtentReports reports;
+	 protected static ExtentReports reportsJenkins;
 	 protected static ExtentTest test;
+	 protected static ExtentTest testjenkins;
 	 public String timestamp = new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date());
 	/**
 	public void start(ExtentReports extent) {
@@ -155,7 +157,7 @@ public class ExtentReport extends TestBase implements ITestListener {
 	public void onTestSuccess(ITestResult result) {
 		System.out.println("on test success");
 		test.log(LogStatus.PASS, result.getMethod().getMethodName() + "test is passed");	
-		
+		testjenkins.log(LogStatus.PASS, result.getMethod().getMethodName() + "test is passed");
 	}
 
 
@@ -171,14 +173,19 @@ public class ExtentReport extends TestBase implements ITestListener {
 //ScreenShot.takeScreenshotCapture(driver, System.getProperty("user.dir")+"\\screenshot\\"+ result.getMethod().getMethodName() + ".png");
 TestUtil.captureScreenshot(driver, System.getProperty("user.dir")+"\\screenshot\\"+result.getMethod().getMethodName()+timestamp+".png");
 String file = test.addScreenCapture(System.getProperty("user.dir")+"\\screenshot\\"+result.getMethod().getMethodName()+timestamp+".png");
+String filejenkins = testjenkins.addScreenCapture(System.getProperty("user.dir")+"\\screenshot\\"+result.getMethod().getMethodName()+timestamp+".png");
+
 
 //test1.addScreenCapture(System.getProperty("user.dir")+"\\screenshot\\" + result.getMethod().getMethodName() + ".png");
 
 test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test is failed", file);
+testjenkins.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test is failed", filejenkins);
 test.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test failure description", result.getThrowable().fillInStackTrace());	
-} catch(Exception e){
-e.printStackTrace();
-}
+testjenkins.log(LogStatus.FAIL, result.getMethod().getMethodName() + "test failure description", result.getThrowable().fillInStackTrace());	
+	} catch(Exception e){
+	e.printStackTrace();
+	}	  
+		  
 	}
 		
 	
@@ -190,6 +197,7 @@ e.printStackTrace();
 	public void onTestSkipped(ITestResult result) {
 		 System.out.println("on test skipped");
 		  test.log(LogStatus.SKIP, result.getMethod().getMethodName() + "test is skipped");
+		  testjenkins.log(LogStatus.SKIP, result.getMethod().getMethodName() + "test is skipped");
 		 
 		
 	}
@@ -215,6 +223,12 @@ e.printStackTrace();
 		reports = new ExtentReports(System.getProperty("user.dir")+"\\Report\\"+"\\STMExtentReport"+TestUtil.simpleDateFormat()+".html", true);
 		reports.addSystemInfo("Host Name", "Selenium Automation").addSystemInfo("Enviornment", "Automation Testing").addSystemInfo("Username", "osgoyal");
 		reports.loadConfig(new File(System.getProperty("user.dir")+"\\dev"+"\\extent-config.xml"));
+	
+		reportsJenkins = new ExtentReports(System.getProperty("user.dir")+"\\test-output\\extentreports\\"+"\\STMExtentReport.html", true);
+		reportsJenkins.addSystemInfo("Host Name", "Selenium Automation").addSystemInfo("Enviornment", "Automation Testing").addSystemInfo("Username", "osgoyal");
+		reportsJenkins.loadConfig(new File(System.getProperty("user.dir")+"\\dev"+"\\extent-config.xml"));
+	
+	
 	}
 
 
@@ -224,7 +238,10 @@ e.printStackTrace();
 	public void onFinish(ITestContext context) {
 		System.out.println("on finish");
 		  reports.endTest(test);
-		  reports.flush();	
+		  reports.flush();
+		  reportsJenkins.endTest(test);
+		  reportsJenkins.flush();
+		  
 		
 	}
 
